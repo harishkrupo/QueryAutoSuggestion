@@ -122,7 +122,7 @@ public class Trie {
 		int i =0;
 		try {
 			csvreader = new CSVReader(new FileReader(filename),'\t','\'',1);
-			while((nextline=csvreader.readNext()) !=null && i<100000)
+			while((nextline=csvreader.readNext()) !=null && i<10000)
 			{
 				insert(nextline[1]);
 				//System.out.println(nextline[1]);
