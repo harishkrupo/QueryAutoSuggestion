@@ -1,10 +1,13 @@
 package com.krupo;
 
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Stack;
+
+import com.opencsv.CSVReader;
 
 public class Trie {
 	private class Node
@@ -12,10 +15,12 @@ public class Trie {
 		public HashMap<Character, Node> hm;
 		public char c;
 		public Node parent;
+		public boolean isEnd;
 		public Node()
 		{
 			hm = new HashMap<Character,Node>();
 			parent = null;
+			isEnd=false;
 		}
 	}
 	
@@ -33,6 +38,7 @@ public class Trie {
 		int i;
 		char []ina= in.toCharArray();
 		Node nodeIterator = root;
+		Node t=new Node();
 		for(i=0;i<in.length();i++)
 		{
 			if(nodeIterator.hm.containsKey(ina[i]))
@@ -42,13 +48,14 @@ public class Trie {
 			}
 			else
 			{
-				Node t= new Node();
+				t= new Node();
 				t.parent = nodeIterator;
 				t.c = ina[i];
 				nodeIterator.hm.put(ina[i], t);
 				nodeIterator=t;
 			}
 		}
+		t.isEnd=true;
 	}
 
 	public ArrayList<String> getCompletions(String pre)
@@ -86,6 +93,17 @@ public class Trie {
 				arl.add(new StringBuffer().append(temp).reverse().toString());
 				continue;
 			}
+			else if(nodeIterator.isEnd)
+			{
+				Node goingUp = nodeIterator;
+				String temp = new String();
+				while(goingUp != root)
+				{
+					temp = temp + goingUp.c;
+					goingUp = goingUp.parent;
+				}
+				arl.add(new StringBuffer().append(temp).reverse().toString());
+			}
 			while(it.hasNext())
 			{
 				Map.Entry<Character, Node> et = it.next();
@@ -94,5 +112,27 @@ public class Trie {
 			
 		}
 		return arl;
+	}
+	
+	
+	public void buildTrie(String filename)
+	{
+		CSVReader csvreader=null;
+		String []nextline ;
+		int i =0;
+		try {
+			csvreader = new CSVReader(new FileReader(filename),'\t','\'',1);
+			while((nextline=csvreader.readNext()) !=null && i<100000)
+			{
+				insert(nextline[1]);
+				//System.out.println(nextline[1]);
+				i++;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
