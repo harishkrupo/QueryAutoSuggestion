@@ -12,8 +12,9 @@ public class Driver {
 //		trie.insert("ten");
 //		trie.insert("in");
 //		trie.insert("inn");
-		trie.buildTrie("/home/harishkrupo/Desktop/uc.txt");
-		ArrayList<String> x = trie.getCompletions("geo");
+		trie.buildTrie("/home/harishkrupo/Desktop/uc6.txt");
+		ArrayList<String> x = trie.AStarSearch("t", 3);
+//		ArrayList<String> x = trie.getCompletions("t");
 		System.out.println(x);
 //		System.out.println("Hold");
 //		try {
