@@ -15,8 +15,6 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 
-import com.opencsv.CSVReader;
-
 public class Trie {
 	private class Node implements Comparable<Node>
 	{
