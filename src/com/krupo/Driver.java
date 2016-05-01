@@ -13,9 +13,10 @@ public class Driver {
 //		trie.insert("in");
 //		trie.insert("inn");
 		trie.buildTrie("/home/harishkrupo/Desktop/uc6.txt");
-		ArrayList<String> x = trie.AStarSearch("t", 3);
-//		ArrayList<String> x = trie.getCompletions("t");
+//		ArrayList<String> x = trie.AStarSearch("t", 3);
+		ArrayList<String> x = trie.getCompletions("t");
 		System.out.println(x);
+		System.out.println(x.size());
 //		System.out.println("Hold");
 //		try {
 //			Thread.sleep(3000);

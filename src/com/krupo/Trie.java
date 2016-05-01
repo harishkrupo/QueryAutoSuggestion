@@ -116,6 +116,7 @@ public class Trie {
 				return null;
 			}
 		}
+		
 		stateHolder.push(nodeIterator);
 		
 		while(!stateHolder.isEmpty())
@@ -162,14 +163,14 @@ public class Trie {
 		FileReader fr = null;
 		Scanner scn = null;
 		try {
-			fr = new FileReader(new File("uc6.txt"));
+			fr = new FileReader(new File("/home/harishkrupo/Desktop/uc6.txt"));
 			scn = new Scanner(fr);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-       	
-		while(scn.hasNext())
+       	int i=0;
+		while(scn.hasNext()  &&  i<100000)
 		{
 			String line = scn.nextLine();
 			String toins = line.split("\t")[1];
@@ -178,6 +179,7 @@ public class Trie {
 				continue;
 			}
 			insert(toins);
+			i++;
 		}
 		try {
 			scn.close();
@@ -187,6 +189,7 @@ public class Trie {
 			e.printStackTrace();
 		}
 
+//		System.out.println(totalelems+"\n");
 	}
 
     public ArrayList<String> AStarSearch(String in, int maxout)
