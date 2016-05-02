@@ -1,6 +1,6 @@
 # QueryAutoSuggestion
 ## Introduction
-Query auto suggestion uses a trie data structure to store the previous queries. The retreival of the best query is done using the A* search algorithm with a hueristic fucntion(read hueristic given below).
+Query auto suggestion uses a trie data structure to store the previous queries. The retreival of the best query is done using the A* search algorithm with a hueristic function.
 
 ## Usage
 The trie class contains methods:
