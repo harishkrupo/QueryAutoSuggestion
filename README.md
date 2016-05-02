@@ -19,4 +19,4 @@ public static void main(String []args)
 ```
 
 TODOS:
-- [] Make the trie model serializable so that the model can be stored on the disk.
+- [ ] Make the trie model serializable so that the model can be stored on the disk.
