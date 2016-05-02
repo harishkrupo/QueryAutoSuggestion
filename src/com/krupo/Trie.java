@@ -23,18 +23,23 @@ public class Trie {
 		public Node parent;
 		public boolean isEnd;
         public int count;
+        public int depth;
         public Node()
 		{
 			hm = new HashMap<Character,Node>();
 			parent = null;
 			isEnd=false;
             this.count = 1 ;
+            this.depth = 0;
 		}
 
 		@Override
 		public int compareTo(Node node)
         {
-			return this.count - node.count;
+			double mfn, hfn;
+			mfn = 0.2*this.depth + 1.0/this.depth + 1.0/this.count;
+			hfn = 0.2*node.depth + 1.0/node.depth + 1.0/node.count;
+			return new Double(mfn - hfn).intValue();
 		}
         
         
@@ -71,6 +76,7 @@ public class Trie {
 			{
 				t= new Node();
 				t.parent = nodeIterator;
+				t.depth = nodeIterator.depth+1;
 				t.c = ina[i];
 				nodeIterator.hm.put(ina[i], t);
 				nodeIterator=t;
@@ -169,8 +175,9 @@ public class Trie {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-       	int i=0;
-		while(scn.hasNext()  &&  i<100000)
+      
+		int i=0;
+		while(scn.hasNext() )
 		{
 			String line = scn.nextLine();
 			String toins = line.split("\t")[1];
@@ -179,6 +186,7 @@ public class Trie {
 				continue;
 			}
 			insert(toins);
+			if (i %100000 ==0 )System.out.println(i);
 			i++;
 		}
 		try {
@@ -212,7 +220,7 @@ public class Trie {
 			}
 		}
         state = new PriorityQueue<Node>();
-        state.add(root);
+        state.add(nodeIterator);
         
         while(!state.isEmpty())
         {
@@ -220,6 +228,14 @@ public class Trie {
             if (seencount >= maxout)
             {
                 break;
+            }
+            
+            Set<Map.Entry<Character,Node>> es = nodeIterator.hm.entrySet();
+            Iterator<Map.Entry<Character,Node>> it = es.iterator();
+            while(it.hasNext())
+            {
+                Map.Entry<Character,Node> pair= it.next();
+                state.add(pair.getValue());
             }
             
             if(nodeIterator.isEnd)
@@ -236,13 +252,6 @@ public class Trie {
                 continue;
             }
             
-            Set<Entry<Character,Node>> es = nodeIterator.hm.entrySet();
-            Iterator<Entry<Character,Node>> it = es.iterator();
-            while(it.hasNext())
-            {
-                Map.Entry<Character,Node> pair= it.next();
-                state.add((Node)pair.getValue());
-            }
         }
 
         return arl;

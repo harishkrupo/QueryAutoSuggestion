@@ -1,5 +1,6 @@
 package com.krupo;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Driver {
@@ -12,11 +13,18 @@ public class Driver {
 //		trie.insert("ten");
 //		trie.insert("in");
 //		trie.insert("inn");
+		Scanner scn = new Scanner(System.in);
 		trie.buildTrie("/home/harishkrupo/Desktop/uc6.txt");
-//		ArrayList<String> x = trie.AStarSearch("t", 3);
-		ArrayList<String> x = trie.getCompletions("t");
-		System.out.println(x);
-		System.out.println(x.size());
+		while(true)
+		{
+			System.out.print("Please enter the text : ");
+			String s = scn.nextLine();
+			ArrayList<String> x = trie.AStarSearch(s, 7);
+			System.out.println(x);
+		}
+//		ArrayList<String> x = trie.getCompletions("t");
+		
+		
 //		System.out.println("Hold");
 //		try {
 //			Thread.sleep(3000);
