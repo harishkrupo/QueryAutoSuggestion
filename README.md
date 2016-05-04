@@ -4,9 +4,9 @@ Query auto suggestion uses a trie data structure to store the previous queries. 
 
 ## Usage
 The trie class contains methods:
-- insert(String)
-- buildTrie(filename)
-- AStarSearch(String)
+- void insert(String)
+- void buildTrie(filename)
+- ArrayList<String> AStarSearch(String)
 The usage is very simple. Usage:
 ```java
 import com.krupo.Trie;
