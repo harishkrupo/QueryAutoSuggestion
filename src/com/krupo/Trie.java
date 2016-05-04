@@ -34,7 +34,7 @@ public class Trie {
 		}
 
 		@Override
-		public int compareTo(Node node)
+            public int compareTo(Node node)
         {
 			double mfn, hfn;
 			mfn = 0.2*this.depth + 1.0/this.depth + 1.0/this.count;

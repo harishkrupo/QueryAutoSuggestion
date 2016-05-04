@@ -9,6 +9,7 @@ The trie class contains methods:
 - AStarSearch(String)
 The usage is very simple. Usage:
 ```java
+import com.krupo.Trie;
 
 public static void main(String []args)
 {
